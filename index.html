@@ -18,31 +18,31 @@
     
     <div class="container">
         <h2>LATEST MARS NEWS</h2>
-        <br>
-        <h4 style="color:MediumVioletRed">{{mars_data.news_title}}</h4>
-        <br>
-        <p>{{mars_data.news_p}}</p>
+        <p>News Title</p>
+        <h4 style="color:MediumVioletRed">{{mars_information.news_title}}</h4>
+        <p>News Paragraph Text</p>
+        <p>{{mars_info.news_paragraph}}</p>
     </div>
 
     <div class="container">
       <div class='row'>
         <div class="col-lg-8 col-md-8 col-sm-6 col-xm-12">
-        <h3>MARS BACKGROUND IMAGE</h3><br><br>
-        <img src="{{mars_data.featured_image_url}}" style="max-width:100%; max-height: auto;" alt="Mars Image">
+        <h3>MARS BACKGROUND IMAGE</h3>
+        <img src="{{mars_information.featured_image_url}}" style="max-width:100%; max-height: auto;" alt="Mars Image">
         
-        </div><br>
+        </div>
         <div class="col-lg-4 col-md-4 col-sm-6 col-xm-12">
           <div class="card" style="width: 20rem;">
             <div class="card-body text-white bg-dark">
               <h5 class="card-title">MARS CURRENT WEATHER</h5>
-              <p class="card-text">{{mars_data.mars_weather}}</p>
+              <p class="card-text">{{mars_info.mars_weather}}</p>
               
             </div>
           </div>
           
           <br>
           <h5>MARS FACTS</h5>
-          <table>{{mars_data.mars_facts|safe}}</table>
+          <table>{{mars_info.mars_facts|safe}}</table>
 
         </div>
       </div>
@@ -51,12 +51,12 @@
     <div class='card-deck'>
       <div class='col-md-12'>
           <div class="row">
-              {% for item in mars_data.hemisphere_image_urls %}
+              {% for h in mars_info.hemisphere_image_urls %}
               <div class="col-md-6">
                   <div class="card text-white bg-dark" style="margin: 30px;">
-                      <img class="card-img-top" src="{{item.img_url}}" />
+                      <img class="card-img-top" src="{{h.image_url}}" />
                       <div class="card-body">
-                          <p class="card-text">{{item.title}}</p>
+                          <p class="card-text">{{h.title}}</p>
                       </div>
                   </div>
               </div>

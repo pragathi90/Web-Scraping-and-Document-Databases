@@ -22,27 +22,31 @@ mongo = PyMongo(app)
 @app.route("/")
 def index():
 
+    print("MONGO")
     # Find one record of data from the mongo database
     mars_information = mongo.db.mars_db.find_one()
 
-
+    print("My HTML")
     #marsdata = list(db.marsdata.find())
-    return render_template("index.html", mars_information=mars_information)
+    return render_template("index.html", mars_data=mars_information)
 
 
 # Route that will trigger the scrape function
 @app.route("/scrape")
 def scrape():
 
-    mars_information = mongo.db.mars_info
+    
     mars_data = scrape_marsP.get_news()
     mars_data = scrape_marsP.get_featured_image()
     mars_data = scrape_marsP.get_facts()
     mars_data = scrape_marsP.get_latest_weather()
     mars_data = scrape_marsP.get_hemispheres()
-    mars_information.mars_db.update({}, mars_data, upsert=True)
+    mongo.db.mars_db.update({}, mars_data, upsert=True)
+    
+    print("REDIRECT")
+    #return redirect('http://localhost:5000/', code=302)
     return redirect("/")
-
+    
 
 if __name__ == "__main__":
     app.run(debug=True)
